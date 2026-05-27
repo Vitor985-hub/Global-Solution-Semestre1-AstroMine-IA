@@ -6,11 +6,12 @@
 
 <br>
 
-# AstroMine IA
+# 🚀 AstroMine AI
+> *Explorando a riqueza do cosmos com inteligência e precisão.*
 
-## Nome do grupo
+---
 
-## 👨‍🎓 Integrantes: 
+## 👨‍🚀 Integrantes: 
 - <a href="https://github.com/Vitor985-hub">Vitor Eiji</a>
 - <a href="https://github.com/BPilecarte">Beatriz Pilecarte</a>
 - <a href="https://github.com/yggdrasilGit">Francismar Alves</a>
@@ -24,46 +25,137 @@
 ### Coordenador(a)
 - <a href="https://www.linkedin.com/in/andregodoichiovato/">André Godoi Chiochiovatto</a>
 
-## 📜 Descrição
 
-*Descreva seu projeto com base no texto do PBL (até 600 palavras)*
+## 🌌 1. Descrição do Projeto
 
+Com o crescimento populacional e o avanço tecnológico na Terra, a demanda por minerais raros e recursos naturais tem atingido níveis críticos. A **economia espacial** desponta como a próxima fronteira comercial e científica, onde o espaço deixa de ser apenas objeto de estudo e passa a ser uma extensão viável da economia humana. 
 
-## 📁 Estrutura de pastas
+A **mineração de asteroides** é uma peça chave nessa nova era, oferecendo acesso a trilhões de dólares em metais preciosos (como platina, ouro e cobalto) e elementos vitais (como água) que podem viabilizar não apenas a indústria terrestre, mas também missões de exploração em espaço profundo.
 
-Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
+Neste cenário complexo e com volumes astronômicos de informações, a **Inteligência Artificial e a Automação** são fundamentais. Elas permitem processar imagens, prever composições químicas a bilhões de quilômetros de distância e reduzir drasticamente os custos e os riscos de exploração.
 
-- <b>.github</b>: Nesta pasta ficarão os arquivos de configuração específicos do GitHub que ajudam a gerenciar e automatizar processos no repositório.
+O **AstroMine AI** é uma plataforma inteligente projetada para prospecção e mineração espacial. O sistema atua em todas as frentes da análise exploratória:
+- 🛰️ **Coleta dados espaciais** em tempo real através de sensores e agências parceiras;
+- 🪨 **Analisa asteroides** com base em características orbitais e físicas;
+- 💎 **Classifica minerais** através de modelos preditivos;
+- 📈 **Estima a viabilidade econômica** de cada corpo celeste;
+- 📑 **Gera relatórios inteligentes** utilizando processamento de linguagem natural;
+- 📊 **Exibe tudo em um dashboard interativo** para facilitar a tomada de decisão estratégica.
 
-- <b>assets</b>: aqui estão os arquivos relacionados a elementos não-estruturados deste repositório, como imagens.
+---
 
-- <b>config</b>: Posicione aqui arquivos de configuração que são usados para definir parâmetros e ajustes do projeto.
+## 🎯 2. Objetivos do Projeto
 
-- <b>document</b>: aqui estão todos os documentos do projeto que as atividades poderão pedir. Na subpasta "other", adicione documentos complementares e menos importantes.
+### Objetivo Geral
+Desenvolver uma plataforma de inteligência artificial focada na prospecção espacial, capaz de identificar, analisar e avaliar o potencial econômico de asteroides para mineração.
 
-- <b>scripts</b>: Posicione aqui scripts auxiliares para tarefas específicas do seu projeto. Exemplo: deploy, migrações de banco de dados, backups.
+### Objetivos Específicos
+- **Analisar dados espaciais** brutos provenientes de sondas e observatórios.
+- **Identificar minerais valiosos** através de modelagem matemática e machine learning.
+- **Classificar asteroides** considerando seu risco (ex: tamanho, proximidade) e seu valor comercial.
+- **Gerar insights automáticos** e simplificados para stakeholders e pesquisadores por meio de IA generativa.
+- **Explorar aplicações futuras da IA na economia espacial**, abrindo portas para processos totalmente autônomos.
 
-- <b>src</b>: Todo o código fonte criado para o desenvolvimento do projeto ao longo das 7 fases.
+---
 
-- <b>README.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
+## 🚀 3. MVP (Produto Mínimo Viável)
 
-## 🔧 Como executar o código
+O MVP do **AstroMine AI** concentra-se em entregar uma experiência funcional end-to-end, validando a integração entre inteligência artificial, análise de dados e automação de relatórios.
 
-*Acrescentar as informações necessárias sobre pré-requisitos (IDEs, serviços, bibliotecas etc.) e instalação básica do projeto, descrevendo eventuais versões utilizadas. Colocar um passo a passo de como o leitor pode baixar o seu código e executá-lo a partir de sua máquina ou seu repositório. Considere a explicação organizada em fase.*
+O escopo do MVP contempla:
+- 📡 **Integração com APIs da NASA** para extração em tempo real de informações sobre corpos próximos à Terra (NEOs).
+- 📥 **Coleta de dados de asteroides** físicos e orbitais de maneira contínua e estruturada.
+- 🧠 **Classificação básica de asteroides** utilizando modelos de Machine Learning.
+- 🖥️ **Dashboard interativo com visualização de dados** para monitoramento intuitivo.
+- 🤖 **IA Generativa para geração de relatórios automáticos**, transformando dados complexos em textos executivos.
+- 💾 **Armazenamento em banco de dados** relacional para histórico e consultas.
 
+*Nota: A implementação de funcionalidades envolvendo **computação quântica** será tratada como opcional, sendo desenvolvida apenas caso haja tempo hábil. O foco principal permanece na integração robusta entre IA, dados e automação.*
 
-## 🗃 Histórico de lançamentos
+---
 
-* 0.5.0 - XX/XX/2024
-    * 
-* 0.4.0 - XX/XX/2024
-    * 
-* 0.3.0 - XX/XX/2024
-    * 
-* 0.2.0 - XX/XX/2024
-    * 
-* 0.1.0 - XX/XX/2024
-    *
+## 🛠️ 4. Stack Tecnológica
+
+| Categoria | Tecnologias Utilizadas |
+|-----------|------------------------|
+| **Backend** | Python, FastAPI |
+| **IA e Machine Learning** | scikit-learn, pandas, numpy |
+| **Visão Computacional** | OpenCV |
+| **Banco de Dados** | PostgreSQL ou SQLite |
+| **Frontend / Dashboard** | Streamlit ou React |
+| **IA Generativa** | OpenAI API ou Ollama |
+| **APIs Espaciais** | NASA APIs, NeoWs API |
+| **Computação Quântica** *(Opcional)* | Qiskit, Aer Simulator |
+
+---
+
+## ⚙️ 5. Arquitetura da Solução
+
+O AstroMine AI opera sob uma arquitetura de microsserviços e processamento em pipeline, garantindo escalabilidade e modularidade.
+
+```text
+  [NASA APIs / NeoWs]
+           │
+           ▼ (Extração de Dados)
+  [Backend FastAPI] ───────────┐
+           │                   │
+           ▼                   ▼ (Persistência)
+ [Pipeline de IA & ML]     [Banco de Dados]
+           │                   │
+           ▼                   │
+ [Processamento/Classif.]      │
+           │                   │
+           ▼ (Insights)        │
+ [Dashboard Frontend] ◄────────┘
+           │
+           ▼ (Análise Textual)
+    [IA Generativa]
+```
+
+### Componentes:
+- **Coleta de Dados:** Interfaces de comunicação com agências espaciais e web scraping responsável.
+- **Processamento:** Limpeza, normalização e feature engineering dos dados astronômicos.
+- **Classificação:** Modelos de Machine Learning (como Random Forest ou SVM) para prever composição e periculosidade.
+- **Armazenamento:** Persistência segura dos perfis de asteroides, logs de execução e relatórios.
+- **Visualização:** Front-end reativo para navegação de dados espaciais e estatísticas de forma fluida.
+- **Geração de Relatórios:** LLMs integrados para traduzir números e classificações em relatórios executivos.
+
+---
+
+## 📂 6. Estrutura Recomendada do Projeto
+
+Abaixo apresentamos a estrutura de diretórios adotada para manter o projeto escalável e limpo:
+
+```text
+📦 AstroMine-IA
+ ┣ 📂 backend/       # Código fonte da API (FastAPI, rotas, schemas)
+ ┣ 📂 frontend/      # Dashboard (Streamlit/React) e interface de usuário
+ ┣ 📂 ai/            # Notebooks de treinamento, modelos salvos (scikit-learn, OpenCV)
+ ┣ 📂 database/      # Scripts de migração, modelos ORM e seed de banco
+ ┣ 📂 docs/          # Documentações complementares, diagramas e referências
+ ┣ 📂 assets/        # Elementos não-estruturados, como logos, ícones e imagens 
+ ┣ 📂 quantum/       # (Opcional) Experimentos e circuitos utilizando Qiskit
+ ┣ 📜 .gitignore     # Ignorar arquivos temporários/ambientes virtuais
+ ┗ 📜 README.md      # Documentação central do projeto (este arquivo)
+```
+
+---
+
+## 🔮 7. Funcionalidades Futuras (Roadmap)
+
+Visando a expansão do AstroMine AI para missões de maior complexidade, listamos nosso roadmap tecnológico:
+
+- ⚛️ **Otimização Quântica:** Utilização de algoritmos quânticos (VQE, QAOA) para simular moléculas e otimizar trajetórias orbitais.
+- ⏱️ **Processamento em Tempo Real:** Streaming de dados via WebSockets ou Kafka para atualização simultânea do dashboard.
+- 🌍 **Visualização Orbital 3D:** Implementação de mapas tridimensionais (Three.js/WebGL) mostrando trajetórias de asteroides.
+- 🔬 **Análise Avançada de Imagens Espaciais:** Segmentação avançada utilizando redes neurais convolucionais (CNNs).
+- 🤖 **Automação de Missões Mineradoras:** Módulo de simulação logística para envio e retorno de sondas extrativas autônomas.
+- 🔌 **Integração com ESP32:** Testes de hardware in the loop simulando sensores IoT de sondas em ambiente de solo.
+
+---
+<p align="center">
+Desenvolvido para o <b>Global Solution 2026.1 - FIAP</b>. O cosmos é apenas o começo. ✨
+</p>
 
 ## 📋 Licença
 
