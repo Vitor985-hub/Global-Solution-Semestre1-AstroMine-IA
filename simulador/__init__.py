@@ -1,0 +1,1 @@
+"""Modulo de simulacao de captura e envio de trajetoria."""

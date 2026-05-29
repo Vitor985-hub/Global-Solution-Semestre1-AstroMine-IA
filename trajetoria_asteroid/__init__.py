@@ -1,0 +1,1 @@
+"""Modulo de trajetoria de asteroides com arquitetura em camadas."""

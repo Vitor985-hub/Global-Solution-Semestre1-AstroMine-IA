@@ -1,0 +1,1 @@
+"""Camada de dominio para trajetoria de asteroides."""

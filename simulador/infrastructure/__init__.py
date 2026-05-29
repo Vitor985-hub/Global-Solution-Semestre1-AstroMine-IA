@@ -1,0 +1,1 @@
+"""Infraestrutura do simulador."""

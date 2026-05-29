@@ -1,0 +1,1 @@
+"""Adaptadores de infraestrutura para trajetoria de asteroides."""
