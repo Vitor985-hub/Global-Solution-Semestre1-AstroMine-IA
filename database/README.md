@@ -1,43 +1,71 @@
-# Configuração do Banco de Dados (PostgreSQL)
+# Banco de Dados
 
-Este diretório contém o arquivo `schema.sql`, responsável por criar as tabelas e extensões necessárias para o banco de dados do projeto AstroMine-IA.
+O diretorio `database/` concentra a base relacional prevista para o projeto AstroMine AI.
 
-## Pré-requisitos
+## Objetivo
 
-- **PostgreSQL** instalado e rodando em sua máquina (ou em um servidor).
-- Uma ferramenta de linha de comando (`psql`) ou interface gráfica (como **pgAdmin** ou **DBeaver**).
+O arquivo `schema.sql` modela a persistencia de dados orbitais, analises, relatorios e observabilidade do sistema. Embora o fluxo principal atual ainda rode localmente em arquivos e memoria, esse schema prepara a integracao futura com banco relacional.
 
-## Como rodar o `schema.sql`
+## Estruturas previstas no schema
 
-Você pode executar o script SQL de diferentes maneiras:
+O script cria os seguintes componentes:
 
-### Opção 1: Via Linha de Comando (psql)
+- extensao `uuid-ossp` para geracao automatica de UUIDs;
+- tabela `asteroids` para dados principais de asteroides;
+- tabela `mineral_analysis` para resultados dos modelos de IA;
+- tabela `reports` para relatorios gerados;
+- tabela `space_images` para imagens e resultados de visao computacional;
+- tabela `api_logs` para rastreamento e observabilidade.
 
-1. Abra o terminal ou prompt de comando.
-2. Conecte-se ao PostgreSQL usando o seu usuário (geralmente `postgres`) e crie um banco de dados para o projeto, caso ainda não exista:
-   ```bash
-   psql -U postgres
-   ```
-   Dentro do psql:
-   ```sql
-   CREATE DATABASE astromine_db;
-   \c astromine_db;
-   ```
-3. Execute o script `schema.sql`:
-   ```bash
-   psql -U postgres -d astromine_db -f schema.sql
-   ```
-   *(Substitua `postgres` e `astromine_db` pelo seu usuário e nome do banco de dados, respectivamente).*
+## Pre-requisitos
 
-### Opção 2: Via Interface Gráfica (pgAdmin ou DBeaver)
+- PostgreSQL instalado e em execucao;
+- usuario com permissao para criar extensoes;
+- acesso por `psql`, pgAdmin ou DBeaver.
 
-1. Abra o **pgAdmin** ou o **DBeaver**.
-2. Conecte-se ao seu servidor PostgreSQL.
-3. Crie um novo banco de dados (ex: `astromine_db`).
-4. Abra uma nova **Query Tool** (janela de consulta) conectada a esse banco de dados.
-5. Copie o conteúdo do arquivo `schema.sql` e cole na janela de consulta, **ou** use a opção de carregar o arquivo SQL.
-6. Clique no botão de **Executar** (geralmente um ícone de "play" ou `F5`).
+## Como executar o schema
 
-## Observações
+### Opcao 1: linha de comando
 
-- O script utiliza a extensão `"uuid-ossp"` para gerar UUIDs automaticamente nas tabelas. O script já inclui o comando `CREATE EXTENSION IF NOT EXISTS "uuid-ossp";` para habilitá-la. Certifique-se de que o usuário utilizado possui permissão para criar extensões.
+```bash
+psql -U postgres
+```
+
+No console do PostgreSQL:
+
+```sql
+CREATE DATABASE astromine_db;
+\c astromine_db;
+```
+
+Depois execute o arquivo:
+
+```bash
+psql -U postgres -d astromine_db -f schema.sql
+```
+
+### Opcao 2: interface grafica
+
+1. abra o pgAdmin ou DBeaver;
+2. conecte no servidor PostgreSQL;
+3. crie o banco `astromine_db`;
+4. abra uma janela de query;
+5. carregue o conteudo de `schema.sql`;
+6. execute o script.
+
+## Relacao com o sistema atual
+
+Hoje, o pipeline principal do projeto usa:
+
+- `simulador/trajetoria_capturada.json` para capturas locais;
+- calculo quantico em memoria;
+- geracao de graficos e GIFs em arquivos locais.
+
+O banco ainda nao esta conectado a `main.py`, mas o schema ja descreve como armazenar a evolucao futura do sistema.
+
+## Proximos usos recomendados
+
+- salvar capturas de trajetoria no banco;
+- registrar resultados do QAOA e da aproximacao nao linear;
+- persistir os caminhos dos graficos e animacoes gerados;
+- salvar logs do pipeline de simulacao.
