@@ -8,3 +8,8 @@ pillow
 opencv-python 
 pandas
 scikit-learn
+requests
+fastapi
+uvicorn
+python-dotenv
+psycopg2-binary
