@@ -137,31 +137,36 @@ def train_classifier():
 # =====================================================================
 def save_ai_results_to_db(asteroid_id, classe_predita, cv_data):
     """
-    Salva os insights da IA diretamente nas tabelas asteroids e mineral_analysis.
+    Salva os insights da IA diretamente nas tabelas asteroids e mineral_analysis,
+    ajustando a escala de valor para a realidade económica espacial (Bilhõees/Trilhões).
     """
     try:
         conn = psycopg2.connect(**DB_CONFIG)
         cur = conn.cursor()
         
+        # 🚨 NOVIDADE: Vamos buscar o diâmetro real do asteroide para escalar o valor economicamente
+        cur.execute("SELECT diametro FROM asteroids WHERE id = %s;", (asteroid_id,))
+        res = cur.fetchone()
+        diametro_asteroide = float(res[0]) if res and res[0] is not None else 1.0
+        
         # 1. Atualiza a classe estimada do asteroide
         update_query = "UPDATE asteroids SET classe = %s WHERE id = %s;"
         cur.execute(update_query, (classe_predita, asteroid_id))
         
-        # 2. Limpa análises antigas desse ID para não duplicar se rodar de novo
+        # 2. Limpa análises antigas desse ID para não duplicar
         cur.execute("DELETE FROM mineral_analysis WHERE asteroid_id = %s;", (asteroid_id,))
         
-        # 3. Deduz elementos minerais e valores com base no resultado da IA
+        # 3. Deduz elementos minerais e valores em escala real (Multiplicadores em Bilhões!)
         if classe_predita == 'M':
             minerais = [('Ferro', 75.0, '%'), ('Níquel', 15.0, '%'), ('Platina', 120.0, 'ppm')]
-            multiplicador_valor = 5000000
+            multiplicador_valor = 85_000_000_000  # 85 Bilhões de base
         elif classe_predita == 'S':
             minerais = [('Silício', 60.0, '%'), ('Magnésio', 20.0, '%')]
-            multiplicador_valor = 800000
+            multiplicador_valor = 45_000_000_000  # 45 Bilhões de base
         else: # Classe C
             minerais = [('Carbono', 80.0, '%'), ('Água/Gelo', 10.0, '%')]
-            multiplicador_valor = 200000
+            multiplicador_valor = 15_000_000_000  # 15 Bilhões de base
 
-        # CORRIGIDO: valor_estimado de acordo com seu banco
         insert_query = """
             INSERT INTO mineral_analysis (asteroid_id, elemento_principal, teor_material, unidade_teor, confianca, valor_estimado, modelo_usado)
             VALUES (%s, %s, %s, %s, %s, %s, %s);
@@ -171,16 +176,19 @@ def save_ai_results_to_db(asteroid_id, classe_predita, cv_data):
             # O teor final flutua baseado no brilho que o OpenCV detectou
             teor_real = round(teor_base + (cv_data['pct_brilho'] * 0.5), 2)
             
-            # Se o OpenCV achar 0 anomalias, garantimos um valor mínimo baseado no tamanho/massa para não zerar a economia
             anomalias = cv_data['num_anomalias'] if cv_data['num_anomalias'] > 0 else 1
-            valor_calculado = round(anomalias * multiplicador_valor, 2)
             
+            # 🚨 ESCALONAMENTO REAL: Multiplicamos as anomalias, a base e o tamanho (diâmetro) do asteroide
+            # Isto garante que asteroides grandes valham centenas de Bilhões ou Trilhões, batendo de frente com o custo!
+            valor_calculado = round(anomalias * multiplicador_valor * (diametro_asteroide / 10), 2)
+            
+            # Garantimos que a confiança da IA fique salva corretamente como 0.85 (ou 85% no gráfico)
             cur.execute(insert_query, (
                 asteroid_id, 
                 elemento, 
                 teor_real, 
                 unidade, 
-                0.85, 
+                0.85, # Confiança da IA
                 valor_calculado, 
                 'RandomForest + OpenCV Pipeline'
             ))
@@ -188,7 +196,7 @@ def save_ai_results_to_db(asteroid_id, classe_predita, cv_data):
         conn.commit()
         cur.close()
         conn.close()
-        print(f"💾 Resultados persistidos com sucesso no banco para o ID {asteroid_id}!")
+        print(f"💾 Resultados persistidos à escala real para o ID {asteroid_id}!")
         
     except Exception as e:
         print(f"❌ Falha ao salvar dados no banco: {e}")
