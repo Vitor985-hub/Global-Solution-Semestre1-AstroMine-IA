@@ -223,16 +223,48 @@ def run_full_pipeline(asteroid_id, physical_data, ai_model):
     print("🚀 --- PIPELINE CONCLUÍDO COM SUCESSO ---\n")
 
 
-# Execution block para testes locais
+# =====================================================================
+# EXECUÇÃO AUTOMATIZADA PARA TODOS OS ASTEROIDES DO BANCO
+# =====================================================================
 if __name__ == "__main__":
-    # Inicializa/Treina a IA
+    # 1. Inicializa e treina o cérebro da IA (Random Forest)
     modelo_treinado = train_classifier()
     
-    # Exemplo de dados físicos que viriam da API da NASA para o ID 1
-    dados_nasa_exemplo = {
-        'diametro': 150.0,
-        'massa': 3.4e11
-    }
-    
-    # Executa o pipeline passando o ID do asteroide que você quer analisar
-    run_full_pipeline(asteroid_id=1, physical_data=dados_nasa_exemplo, ai_model=modelo_treinado)
+    # 2. Conecta no PostgreSQL para buscar TODOS os asteroides sincronizados da NASA
+    try:
+        conn = psycopg2.connect(**DB_CONFIG, cursor_factory=RealDictCursor)
+        cur = conn.cursor()
+        
+        # Puxa o ID, nome, diâmetro e massa de todas as linhas da tabela
+        cur.execute("SELECT id, nome, diametro, massa FROM asteroids;")
+        asteroides_do_banco = cur.fetchall()
+        
+        cur.close()
+        conn.close()
+        
+        print(f"\n🔍 Banco de Dados: {len(asteroides_do_banco)} asteroides prontos para processamento de IA.")
+        
+        # 3. Loop dinâmico: Passa cada um dos asteroides pelo pipeline da IA
+        for ast in asteroides_do_banco:
+            # Proteção: Se a API da NASA trouxe diâmetro ou massa nulos, define um fallback seguro
+            diametro_real = float(ast['diametro']) if ast['diametro'] is not None else 120.0
+            massa_real = float(ast['massa']) if ast['massa'] is not None else 2.5e11
+            
+            dados_fisicos = {
+                'diametro': diametro_real,
+                'massa': massa_real
+            }
+            
+            print(f"🔄 Processando IA para: {ast['nome']} (ID: {ast['id']})")
+            
+            # Roda o pipeline completo (OpenCV + RandomForest + Salvar no Banco)
+            run_full_pipeline(
+                asteroid_id=ast['id'], 
+                physical_data=dados_fisicos, 
+                ai_model=modelo_treinado
+            )
+            
+        print("\n🎉 SUCESSO TOTAL! Todos os asteroides foram analisados, avaliados e salvos com sucesso!")
+        
+    except Exception as e:
+        print(f"❌ Erro crítico ao carregar a lista de asteroides para a IA: {e}")
