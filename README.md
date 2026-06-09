@@ -64,6 +64,10 @@ O AstroMine AI combina cinco frentes principais:
 │  └──────────────┘    └───────────────┘                              │
 └─────────────────────────────────────────────────────────────────────┘
 ```
+---
+### video demosntrando o funcionamento
+
+https://youtu.be/yEBgVSzr0Ns
 
 ---
 
@@ -145,7 +149,10 @@ Criterio das simulações:
 cd astromine-api
 uvicorn main:app --reload --port 8000
 ```
-
+#### fica dispoonivel em:
+```
+http://localhost:8000/docs
+```
 ---
 
 ## Modulo: `database/` — Banco de Dados (PostgreSQL)
@@ -348,6 +355,10 @@ DB_PASSWORD=sua_senha
 ```bash
 cd astromine-api
 uvicorn main:app --reload --port 8000
+```
+#### fica dispoonivel em:
+```
+http://localhost:8000/docs
 ```
 
 ### 4. Sincronizar dados da NASA
