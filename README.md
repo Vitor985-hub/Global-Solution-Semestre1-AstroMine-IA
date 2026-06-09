@@ -116,11 +116,28 @@ A API conecta o sistema aos dados reais da NASA e expoe operacoes CRUD sobre os 
 
 ### Detalhes tecnicos
 
-- Consome a API `ssd-api.jpl.nasa.gov/sbdb_query.api` com campos: `full_name`, `class`, `diameter`, `extent`, `density`, `moid`;
+- Consome a API `ssd-api.jpl.nasa.gov/sbdb_query.api` (https://ssd-api.jpl.nasa.gov/doc/sbdb_query.html) com campos: `full_name`, `class`, `diameter`, `extent`, `density`, `moid`;
 - Converte MOID (Minimum Orbit Intersection Distance) de unidades astronomicas (AU) para quilometros;
 - Usa upsert: atualiza se o asteroide ja existe, insere caso contrario;
 - Modelo Pydantic `AsteroideResponse` para validacao de dados;
 - Roda com Uvicorn na porta 8000.
+
+#### Nota:
+Como a maioria dos asteroides nunca recebeu visitas de sondas espaciais, os dados de massa, densidade e formato tridimensional exato estão disponíveis apenas para asteroides massivos ou bem estudados pela ciência. Assim, estas informações, quando faltantes(nulas), estão sendo simulados na aplicação.
+
+Criterio das simulações:
+- As simulações de valores tem como base as classe, onde:
+  - classes como `APOLLO, AMOR, ATEN` etc. receberam faixas mais amplas porque são grupos orbitais e podem ter objetos bem pequenos ou relativamente grandes;
+    Ex:
+    `"APOLLO": (1.5, 3.2),
+    "AMOR": (1.4, 2.9),
+    "ATEN": (1.8, 3.4),`
+  - classes espectrais como `C, S, M, D` etc. receberam faixas típicas de tamanho assumindo variação comum entre asteroides desse tipo;
+    Ex:
+    `"C": (1.2, 2.5),
+    "B": (1.2, 2.3),
+    "S": (2.2, 3.6),`
+  - `ND` é o fallback genérico quando a classe não é reconhecida.
 
 ### Execucao
 
@@ -391,4 +408,4 @@ Possiveis evolucoes futuras para o projeto:
 
 ## Licenca
 
-<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">Fiap</a> esta licenciado sob <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">Fiap</a> esta licenciado sob <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
