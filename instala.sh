@@ -26,16 +26,16 @@ fi
 
 echo "Criando ambiente virtual Python..."
 
-if ! command -v python3 >/dev/null 2>&1; then
-	echo "Erro: python3 nao foi encontrado no sistema."
+if ! command -v py >/dev/null 2>&1; then
+	echo "Erro: py nao foi encontrado no sistema."
 	finish 1
 fi
 
-python3 -m venv .venv
+py -3.13 -m venv .venv
 
 echo "Ambiente virtual criado em .venv"
 echo "Ativando ambiente virtual da .venv para instalar dependencias..."
-source .venv/bin/activate
+source .venv/Scripts/activate
 echo "Instalando dependencias automaticamente..."
 
 if [ ! -f requirement.txt ]; then
@@ -43,8 +43,8 @@ if [ ! -f requirement.txt ]; then
 	finish 1
 fi
 
-python -m pip install --upgrade pip
-python -m pip install -r requirement.txt
+py -m pip install --upgrade pip
+py -m pip install -r requirement.txt
 
 echo "Dependencias instaladas com sucesso"
 echo "Ambiente virtual mantido ativo no terminal atual"
